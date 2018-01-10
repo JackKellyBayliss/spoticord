@@ -32,7 +32,7 @@ async function spotifyReconnect () {
   s.getStatus(function(err, res) {
     if (!err) {
       clearInterval(check);
-      global.intloop = setInterval(checkSpotify, 1500);
+      global.intloop = setInterval(checkSpotify, 200);
     }
   });
 }
@@ -119,8 +119,8 @@ songEmitter.on('songUpdate', song => {
     undefined;
 
   rpc.setActivity({
-    details: `🎵  ${song.name}`,
-    state: `👤  ${song.artist}`,
+    details: `🎷  ${song.name}`,
+    state: `♿  ${song.artist}`,
     startTimestamp,
     endTimestamp,
     largeImageKey,
@@ -134,12 +134,13 @@ songEmitter.on('songUpdate', song => {
 });
 
 rpc.on('ready', () => {
-    log(``);
-    meme.info(`---------------------------------------------`);
-    meme.mark(`Thank you for using the MLG Spoticord Repo.`);
-    meme.info(`---------------------------------------------`);
-    log(``);
-    meme.error(`Connected to Discord! (${appClient})`);
+    meme.mark(` `);
+    meme.mark(`             ---------------------------------------------`);
+    meme.mark(`                   Thank you for using MLG Spoticord!`);
+    meme.mark(`             ---------------------------------------------`);
+    meme.mark(` `);
+    meme.warn(`Connected to Discord! (${appClient})`);
+    meme.mark(` `);
     global.intloop = setInterval(checkSpotify, 200);
 });
 
