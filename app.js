@@ -3,7 +3,8 @@ const { Client } = require('discord-rpc'),
       log = require("fancy-log"),
       events = require('events'),
       fs = require('fs'),
-      keys = require('./keys.json');
+      keys = require('./keys.json'),
+      meme = require('color-log');
 
 /**
  * Check if user is blocking open.spotify.com before establishing RPC connection
@@ -134,11 +135,11 @@ songEmitter.on('songUpdate', song => {
 
 rpc.on('ready', () => {
     log(``);
-    log(`---------------------------------------------`);
-    log(`Thank you for using the MLG Spoticord Repo.`);
-    log(`---------------------------------------------`);
+    meme.info(`---------------------------------------------`);
+    meme.mark(`Thank you for using the MLG Spoticord Repo.`);
+    meme.info(`---------------------------------------------`);
     log(``);
-    log(`Connected to Discord! (${appClient})`);
+    meme.error(`Connected to Discord! (${appClient})`);
     global.intloop = setInterval(checkSpotify, 200);
 });
 
