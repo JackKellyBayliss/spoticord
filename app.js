@@ -133,8 +133,13 @@ songEmitter.on('songUpdate', song => {
 });
 
 rpc.on('ready', () => {
+    log(``);
+    log(`---------------------------------------------`);
+    log(`Thank you for using the MLG Spoticord Repo.`);
+    log(`---------------------------------------------`);
+    log(``);
     log(`Connected to Discord! (${appClient})`);
-    global.intloop = setInterval(checkSpotify, 1500);
+    global.intloop = setInterval(checkSpotify, 200);
 });
 
 rpc.login(appClient).catch(log.error);
