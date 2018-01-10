@@ -96,8 +96,8 @@ async function checkSpotify() {
  **/
 songEmitter.on('newSong', song => {
   rpc.setActivity({
-    details: `🎷  ${song.name}`,
-    state: `♿  ${song.artist}`,
+    details: `🔹  ${song.name}`,
+    state: `🔸  ${song.artist}`,
     startTimestamp: song.start,
     endTimestamp: song.end,
     largeImageKey,
@@ -119,8 +119,8 @@ songEmitter.on('songUpdate', song => {
     undefined;
 
   rpc.setActivity({
-    details: `🎷  ${song.name}`,
-    state: `♿  ${song.artist}`,
+    details: `🔹  ${song.name}`,
+    state: `🔸  ${song.artist}`,
     startTimestamp,
     endTimestamp,
     largeImageKey,
