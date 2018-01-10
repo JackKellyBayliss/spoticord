@@ -22,9 +22,17 @@
     "fancy-log": "^1.3.0",
     "request": "^2.83.0",
     "wintools": "^0.1.0",
-    "color-log": "^0.0.2"
+    "color-log": "^0.0.2",
+	  "auto-updater": "^1.0.2",
+	  "adm-zip": "",
+	  "underscore": "^1.8.3",
+	  "node-promise": "^0.5.12"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
-  }
+  },
+  "auto-updater":{
+	"repo":"/JackKellyBayliss/spoticord",
+	"branch":"master"
+	}
 }
