@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JackKellyBayliss/spoticord.git"
+    "url": "git+https://github.com/JackKellyBayliss/spoticord-mlg.git"
   },
   "author": "Phineas",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JackKellyBayliss/spoticord/issues"
+    "url": "https://github.com/JackKellyBayliss/spoticord-mlg/issues"
   },
-  "homepage": "https://github.com/JackKellyBayliss/spoticord#readme",
+  "homepage": "https://github.com/JackKellyBayliss/spoticord-mlg#readme",
   "dependencies": {
     "discord-rpc": "^3.0.0-beta.4",
     "fancy-log": "^1.3.0",
