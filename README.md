@@ -3,7 +3,7 @@
                 
 ## Github Repo - Stats
 
-[![Known Vulnerabilities](https://snyk.io/test/github/jackkellybayliss/spoticord-mlg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/jackkellybayliss/spoticord-mlg?targetFile=package.json) [![Build Status](https://travis-ci.org/JackKellyBayliss/spoticord-mlg.svg?branch=master)](https://travis-ci.org/JackKellyBayliss/spoticord-mlg)
+[![Known Vulnerabilities](https://snyk.io/test/github/jackkellybayliss/spoticord-mlg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/jackkellybayliss/spoticord-mlg?targetFile=package.json)
 
               
 
