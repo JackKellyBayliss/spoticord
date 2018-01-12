@@ -1,4 +1,12 @@
-# spoticord `0.0.4 - MLG VERSION` [![discordxd](https://discordapp.com/api/guilds/297142682894073856/embed.png)](https://discord.gg/nations)
+# spoticord `0.0.4 - MLG VERSION`
+
+                
+## Github Repo - Stats
+
+[![Known Vulnerabilities](https://snyk.io/test/github/jackkellybayliss/spoticord-mlg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/jackkellybayliss/spoticord-mlg?targetFile=package.json)
+
+              
+
 **Display your current Spotify song on Discord using the RPC API:**
 ![N|Solid](https://s.phineas.io/share/DiscordProfile-RR_50.png)
 
