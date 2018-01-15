@@ -1,15 +1,15 @@
-﻿    {
-      "Emojis": {
-        "Artist":"👤",
-        "Song":"🎵",
-		"largeHover":"⛓",
-		"smallHover":"💿"
-      },
-	  "appClientID": "400747357194551298",
-	  "imageKeys": {
-	  	  "Large": "mlg_spotify",
-		  "Small": "new_play",
-		  "SmallPaused": "new_pause"
-	  },
-	  "rpcTransportType": "ipc"
-    }
+﻿ {
+     "Emojis": {
+         "Artist": "👤",
+         "Song": "🎵",
+         "largeHover": "⛓",
+         "smallHover": "💿"
+     },
+     "appClientID": "400747357194551298",
+     "imageKeys": {
+         "Large": "mlg_spotify",
+         "Small": "new_play",
+         "SmallPaused": "new_pause"
+     },
+     "rpcTransportType": "ipc"
+ }
