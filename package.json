@@ -26,13 +26,10 @@
 	  "auto-updater": "^1.0.2",
 	  "adm-zip": "",
 	  "underscore": "^1.8.3",
-	  "node-promise": "^0.5.12"
+    "node-promise": "^0.5.12",
+    "js-yaml": "^3.10.0"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
   },
-  "auto-updater":{
-	"repo":"/JackKellyBayliss/spoticord",
-	"branch":"master"
-	}
 }

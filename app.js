@@ -1,12 +1,34 @@
 const { Client } = require('discord-rpc'),
-      spotifyWeb = require('./spotify'),
-      log = require("fancy-log"),
-      events = require('events'),
-      fs = require('fs'),
-      keys = require('./keys.json'),
-      meme = require('color-log'),
-      AutoUpdater = require('auto-updater');
+    spotifyWeb = require('./spotify'),
+    log = require("fancy-log"),
+    events = require('events'),
+    fs = require('fs'),
+    meme = require('color-log'),
+    yaml = require('js-yaml');
 
+
+/** 
+ *   Checks to see if any config.yml is present, if not the program will not load.
+**/
+try {
+    const configFile = yaml.safeLoad(fs.readFileSync('config.yml', 'utf8'));
+    global.config = configFile;
+} catch (e) {
+    console.log(e);
+    process.exit(1);
+}
+var configVar = {
+    'song': config.Emojis.Song,
+    'artist': config.Emojis.Artist,
+    'largeHover': config.Emojis.largeHover,
+    'smallHover': config.Emojis.smallHover,
+    'appClientID': config.appClientID,
+    'largeImageKey': config.imageKeys.Large,
+    'smallImageKey': config.imageKeys.Small,
+    'smallPausedImageKey': config.imageKeys.smallPaused,
+    'rpcTransportType': config.rpcTransportType
+}
+module.exports = configVar;
 /**
  * Check if user is blocking open.spotify.com before establishing RPC connection
  * Works only on Linux based systems that use /etc/hosts, if a rule exist, the
@@ -19,12 +41,12 @@ if (process.platform !== "win32" && fs.existsSync("/etc/hosts")) {
   checkHosts(fs.readFileSync("/etc/hosts", "utf-8"));
 }
 
-const rpc = new Client({ transport: keys.rpcTransportType }),
+const rpc = new Client({ transport: configVar.rpcTransportType }),
       s = new spotifyWeb.SpotifyWebHelper(),
-      appClient = keys.appClientID,
-      largeImageKey = keys.imageKeys.large,
-      smallImageKey = keys.imageKeys.small,
-      smallImagePausedKey = keys.imageKeys.smallPaused;
+      appClient = configVar.appClientID,
+      largeImageKey = configVar.largeImageKey,
+      smallImageKey = configVar.smallImageKey,
+      smallImagePausedKey = configVar.smallPausedImageKey;
 
 var songEmitter = new events.EventEmitter(),
     currentSong = {};
@@ -71,7 +93,7 @@ async function checkSpotify() {
 
     let start = parseInt(new Date().getTime().toString().substr(0, 10)),
         end = start + (res.track.length - res.playing_position);
-    
+
     var song = {
       uri: (res.track.track_resource.uri ? res.track.track_resource.uri : ""),
       name: res.track.track_resource.name,
@@ -97,14 +119,14 @@ async function checkSpotify() {
  **/
 songEmitter.on('newSong', song => {
   rpc.setActivity({
-    details: `🔹  ${song.name}`,
-    state: `🔸  ${song.artist}`,
+      details: `${configVar.song}  ${song.name}`,
+      state: `${configVar.artist}  ${song.artist}`,
     startTimestamp: song.start,
     endTimestamp: song.end,
     largeImageKey,
     smallImageKey,
-    largeImageText: `⛓  ${song.uri}`,
-    smallImageText: `💿  ${song.album}`,
+    largeImageText: `${configVar.largeHover}  ${song.uri}`,
+    smallImageText: `${configVar.smallHover}  ${song.album}`,
     instance: false,
   });
 
@@ -120,14 +142,14 @@ songEmitter.on('songUpdate', song => {
     undefined;
 
   rpc.setActivity({
-    details: `🔹  ${song.name}`,
-    state: `🔸  ${song.artist}`,
+      details: `${Emojis.song}  ${song.name}`,
+      state: `${Emojis.artist}  ${song.artist}`,
     startTimestamp,
     endTimestamp,
     largeImageKey,
     smallImageKey: startTimestamp ? smallImageKey : smallImagePausedKey,
-    largeImageText: `⛓  ${song.uri}`,
-    smallImageText: `💿  ${song.album}`,
+    largeImageText: `${configVar.largeHover}  ${song.uri}`,
+    smallImageText: `${configVar.smallHover}  ${song.album}`,
     instance: false,
   });
 
