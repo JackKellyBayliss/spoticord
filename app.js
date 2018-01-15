@@ -4,7 +4,7 @@ const { Client } = require('discord-rpc'),
     events = require('events'),
     fs = require('fs'),
     meme = require('color-log'),
-    yaml = require('js-yaml');
+    yaml = require('js-yaml'); 
 
 
 /** 

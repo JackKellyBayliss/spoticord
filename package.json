@@ -36,5 +36,5 @@
   "pkg": {
     "assets": [ "node_modules/**/*", "spotify.js" ]
   },
-  "help": "pkg . --targets latest-win-x64 --debug"
+  "help": "pkg . --targets latest-win-x64 --debug "
 }
