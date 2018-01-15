@@ -1,8 +1,9 @@
 {
-  "name": "spoticord-mlg",
+  "name": "mlg-spoticord",
   "version": "0.0.4",
   "description": "Display your Spotify status as a Discord Rich Presence using the RPC API",
   "main": "app.js",
+  "bin": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
@@ -23,13 +24,17 @@
     "request": "^2.83.0",
     "wintools": "^0.1.0",
     "color-log": "^0.0.2",
-	  "auto-updater": "^1.0.2",
-	  "adm-zip": "",
-	  "underscore": "^1.8.3",
+    "auto-updater": "^1.0.2",
+    "adm-zip": "",
+    "underscore": "^1.8.3",
     "node-promise": "^0.5.12",
     "js-yaml": "^3.10.0"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
-  }
+  },
+  "pkg": {
+    "assets": [ "node_modules/**/*", "spotify.js" ]
+  },
+  "help": "pkg . --targets latest-win-x64 --debug"
 }
