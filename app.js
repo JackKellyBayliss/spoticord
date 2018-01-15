@@ -142,8 +142,8 @@ songEmitter.on('songUpdate', song => {
     undefined;
 
   rpc.setActivity({
-      details: `${Emojis.song}  ${song.name}`,
-      state: `${Emojis.artist}  ${song.artist}`,
+      details: `${configVar.song}  ${song.name}`,
+      state: `${configVar.artist}  ${song.artist}`,
     startTimestamp,
     endTimestamp,
     largeImageKey,
