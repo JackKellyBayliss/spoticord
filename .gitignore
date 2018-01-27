@@ -9,7 +9,7 @@ yarn-error.log*
 README.md
 
 # Runtime data
-pids
+pids 
 *.pid
 *.seed
 *.pid.lock
