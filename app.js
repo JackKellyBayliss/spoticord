@@ -5,12 +5,12 @@ const { Client } = require('discord-rpc'),
     fs = require('fs'),
     meme = require('color-log'),
     yaml = require('js-yaml'),
-    https = require('https');
+    https = require('https'),
+    r = require('request');
 
 /**
  * Random Functions.
 **/
-
 function WelcomeMessage() {
     meme.mark(` `);
     meme.mark(`             ---------------------------------------------`);
@@ -18,7 +18,6 @@ function WelcomeMessage() {
     meme.mark(`             ---------------------------------------------`);
     meme.mark(` `);
 }
-
 /** 
  *   Checks to see if any config.yml is present, if not the program will not load.
 **/
@@ -32,7 +31,6 @@ try {
     try {
         const createYML = fs.createWriteStream('config.yml', 'utf8');
         https.get("https://raw.githubusercontent.com/JackKellyBayliss/spoticord-mlg/master/config.yml", (res) => {
-
             res.pipe(createYML);
             meme.warn("Please Wait...");
         });
@@ -49,7 +47,6 @@ try {
 }
 
 function runMainCode() {
-
 var configVar = {
     'song': config.Emojis.Song,
     'artist': config.Emojis.Artist,
@@ -59,7 +56,8 @@ var configVar = {
     'largeImageKey': config.imageKeys.Large,
     'smallImageKey': config.imageKeys.Small,
     'smallPausedImageKey': config.imageKeys.smallPaused,
-    'rpcTransportType': config.rpcTransportType
+    'rpcTransportType': config.rpcTransportType,
+    'shareAnonAnalytics': config.shareAnonAnalytics
 }
 module.exports = configVar;
 /**
@@ -145,6 +143,19 @@ async function checkSpotify() {
   });
 }
 
+ /**
+ * Send Information to api.nations.io
+ * newSong: The current song; Spotify URI, name and artist name is sent remotely to api.nations.io for analytics.
+ **/
+
+    const updateSpoticordOuterscope = (song) => {
+    r.post({
+        uri: "https://api.nations.io/v1/outerscope/spotifyAnalytics",
+        headers: { 'Content-Type': 'application/json', 'User-Agent': 'mlg-spoticord-rev2' },
+        json: { uri: song.uri, name: song.name, artist: song.artist }
+    });
+};
+
 /**
  * Initialise song listeners
  * newSong: gets emitted when the song changes to update the RP
@@ -162,7 +173,7 @@ songEmitter.on('newSong', song => {
     smallImageText: `${configVar.smallHover}  ${song.album}`,
     instance: false,
   });
-
+  if (configVar.shareAnonAnalytics) updateSpoticordOuterscope(song);
   log(`Updated song to: ${song.artist} - ${song.name}`);
 });
 

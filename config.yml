@@ -9,3 +9,4 @@ imageKeys:
   Small: new_play
   SmallPaused: new_pause  
 rpcTransportType: ipc
+shareAnonAnalytics: true
