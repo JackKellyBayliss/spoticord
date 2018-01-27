@@ -4,8 +4,20 @@ const { Client } = require('discord-rpc'),
     events = require('events'),
     fs = require('fs'),
     meme = require('color-log'),
-    yaml = require('js-yaml'); 
+    yaml = require('js-yaml'),
+    https = require('https');
 
+/**
+ * Random Functions.
+**/
+
+function WelcomeMessage() {
+    meme.mark(` `);
+    meme.mark(`             ---------------------------------------------`);
+    meme.mark(`                   Thank you for using MLG Spoticord!`);
+    meme.mark(`             ---------------------------------------------`);
+    meme.mark(` `);
+}
 
 /** 
  *   Checks to see if any config.yml is present, if not the program will not load.
@@ -13,10 +25,31 @@ const { Client } = require('discord-rpc'),
 try {
     const configFile = yaml.safeLoad(fs.readFileSync('config.yml', 'utf8'));
     global.config = configFile;
+    runMainCode();
 } catch (e) {
-    console.log(e);
-    process.exit(1);
+    WelcomeMessage();
+    meme.warn("Since your config.yml has been deleted, a new one is downloading.");
+    try {
+        const createYML = fs.createWriteStream('config.yml', 'utf8');
+        https.get("https://raw.githubusercontent.com/JackKellyBayliss/spoticord-mlg/master/config.yml", (res) => {
+
+            res.pipe(createYML);
+            meme.warn("Please Wait...");
+        });
+
+    } catch (e) {
+        console.log(e);
+    };
+    function runMain() {
+        const configFile = yaml.safeLoad(fs.readFileSync('config.yml', 'utf8'));
+        global.config = configFile;
+        runMainCode();
+    }
+    setTimeout(runMain, 5000);
 }
+
+function runMainCode() {
+
 var configVar = {
     'song': config.Emojis.Song,
     'artist': config.Emojis.Artist,
@@ -157,14 +190,11 @@ songEmitter.on('songUpdate', song => {
 });
 
 rpc.on('ready', () => {
-    meme.mark(` `);
-    meme.mark(`             ---------------------------------------------`);
-    meme.mark(`                   Thank you for using MLG Spoticord!`);
-    meme.mark(`             ---------------------------------------------`);
-    meme.mark(` `);
+    WelcomeMessage();
     meme.warn(`Connected to Discord! (${appClient})`);
     meme.mark(` `);
     global.intloop = setInterval(checkSpotify, 200);
 });
 
 rpc.login(appClient).catch(log.error);
+}
