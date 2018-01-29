@@ -57,7 +57,9 @@ var configVar = {
     'smallImageKey': config.imageKeys.Small,
     'smallPausedImageKey': config.imageKeys.smallPaused,
     'rpcTransportType': config.rpcTransportType,
-    'shareAnonAnalytics': config.shareAnonAnalytics
+    'shareAnonAnalytics': config.shareAnonAnalytics,
+    'JKBsharingAnalytics': config.JKBsharingAnalytics,
+    'sharingName': config.sharingName
 }
 module.exports = configVar;
 /**
@@ -151,10 +153,23 @@ async function checkSpotify() {
     const updateSpoticordOuterscope = (song) => {
     r.post({
         uri: "https://api.nations.io/v1/outerscope/spotifyAnalytics",
-        headers: { 'Content-Type': 'application/json', 'User-Agent': 'mlg-spoticord-rev2' },
+        headers: { 'Content-Type': 'application/json', 'User-Agent': 'spoticord-rev2' },
         json: { uri: song.uri, name: song.name, artist: song.artist }
     });
 };
+
+/**
+ * Send Information to api.jackkellybayliss.com
+ * newSong: The current song; Spotify URI, name and artist name is sent remotely to api.jackkellybayliss.com for analytics.
+ **/
+
+    const updateSpoticordAnalytics = (song) => {
+        r.post({
+            uri: "https://api.jackkellybayliss.com/spotifyAnalytics",
+            headers: { 'Content-Type': 'application/json', 'User-Agent': 'mlg-spoticord' },
+            json: { uri: song.uri, name: song.name, artist: song.artist, album: song.album, sharingname: configVar.sharingName }
+        });
+    };
 
 /**
  * Initialise song listeners
@@ -174,6 +189,7 @@ songEmitter.on('newSong', song => {
     instance: false,
   });
   if (configVar.shareAnonAnalytics) updateSpoticordOuterscope(song);
+  if (configVar.JKBsharingAnalytics) updateSpoticordAnalytics(song);
   log(`Updated song to: ${song.artist} - ${song.name}`);
 });
 

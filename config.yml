@@ -9,4 +9,12 @@ imageKeys:
   Small: new_play
   SmallPaused: new_pause  
 rpcTransportType: ipc
+
+# shareAnonAnalytics
+# This is the main analytics variable that was recently created by nations (official repo author)
 shareAnonAnalytics: true
+
+# JKBsharingAnalytics
+# Custom made analytics code that shares what you're listening to via https://spoticord.jackkellybayliss.com/
+JKBsharingAnalytics: true
+sharingName: "Anonymous"
