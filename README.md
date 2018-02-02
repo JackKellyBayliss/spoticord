@@ -1,5 +1,5 @@
 # **Project Deprecated**
-**In favor of [Discord's Spotify Connection](https://support.discordapp.com/hc/en-us/articles/360000167212).
+**In favor of [Discord's Spotify Connection](https://support.discordapp.com/hc/en-us/articles/360000167212).**
 
 
 # spoticord `0.0.4 - MLG VERSION`
