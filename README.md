@@ -1,4 +1,4 @@
-# **Project Depreciated**
+# **Project Deprecated**
 **In favor of [Discord's Spotify Connection](https://support.discordapp.com/hc/en-us/articles/360000167212).
 
 
